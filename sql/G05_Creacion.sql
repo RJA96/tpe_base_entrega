@@ -247,6 +247,7 @@ ALTER TABLE GR05_MOV_ENTRADA ADD CONSTRAINT FK_MOV_ENTRADA_MOVIMIENTO
     NOT DEFERRABLE 
     INITIALLY IMMEDIATE
 ;
+-- End of file of creation.
+-- Start inputs
 
--- End of file.
 
