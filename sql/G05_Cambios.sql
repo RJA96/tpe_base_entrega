@@ -7,8 +7,8 @@ CHECK (fecha_desde < fecha_hasta);
 --b.
 --rise exception y se puede usar else
 CREATE TRIGGER peso_valido
-	AFTER INSERT OF peso ON pallet
-	FOR EACH ROW 
+	AFTER INSERT ON gr05_pallet
+	FOR EACH ROW
 	EXECUTE PROCEDURE funcion_comprobar_peso();
 
 CREATE FUNCTION funcion_comprobar_peso()
@@ -27,7 +27,7 @@ BEGIN
 									from gr_05mov_entrada me
 									where me.cod_pallet= new.cod_pallet)
 				group by f.nro_fila, f.nro_estanteria
-				HAVING SUM(p.peso)> new.peso
+				HAVING SUM(p.peso)< new.peso
 				)) THEN
 			RAISE exception  'el peso maximo es superado';
 		END IF;
@@ -46,22 +46,23 @@ CHECK (tipo like 'general' or tipo like 'vidrio' or tipo like 'insecticidas' or 
 --C)
 
 --1
-Create FUNCTION pos_libres (fecha date)
-RETURNS table (nro_estanteria int, nro_fila int, nro_posicion int) AS $$
+Create FUNCTION pos_libres (fechaingresada date)
+RETURNS table (nro_estanteria int, nro_fila int, nro_posicion int) AS $$body
 declare var_r record;
 BEGIN
 	for var_r IN(
 		Select p.nro_estanteria, p.nro_fila, p.nro_posicion
-		from posicion p full join alquiler_posiciones ap on p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
-		where fecha >= ap.fecha_hasta and ap.estado = false or ap.id_alquiler is null
+		from gr05_posicion p full join gr05_alquiler_posiciones ap on p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
+		full join  gr05_alquiler a on a.id_alquiler=ap.id_alquiler
+		where fechaingresada >= a.fecha_hasta and ap.estado = false or ap.id_alquiler is null
 	)
 	LOOP
 		nro_estanteria := var_r.nro_estanteria;
 		nro_fila := var_r.nro_fila;
 		nro_posicion := var_r.nro_posicion; 
-		RETURNS Next
+	    RETURN Next;
 	END LOOP;
-	END; $$
+END; $$body
 	LANGUAGE plpgsql;
 
 --2
@@ -79,18 +80,11 @@ BEGIN
 --D)
 --1
 Create VIEW pos_libres AS
-	Select p.nro_posicion, p.estado = CASE 
-										when ap.estado = true then 'ocupado'
-										when ap.estado = false then 'libre'
-										when ap.estado is null then 'libre'
-									END, p.nro_fila CASE 
-										when ap.estado = true then ap.nro.fila
-									END, p.nro_estanteria CASE 
-										when ap.estado = true then ap.nro.estanteria
-									END
-	FROM posicion p FULL JOIN alquiler_posiciones ap 
+	Select p.nro_posicion, case ap.estado when true then 'ocupado' when false then 'libre' when  null then 'libre'END,
+       CASE ap.estado when true then ap.nro_fila END,  CASE ap.estado when true then ap.nro_estanteria END
+	FROM gr05_posicion p FULL JOIN gr05_alquiler_posiciones ap
 	ON p.nro_posicion = ap.nro_posicion and p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
-	inner join alquiler a on a.id_alquiler = ap_id_alquiler
+	inner join gr05_alquiler a on a.id_alquiler = ap.id_alquiler
 --2
 Create VIEW dinero_invertido AS
 	select a.id_cliente, SUM(importe_dia)
