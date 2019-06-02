@@ -81,15 +81,15 @@ BEGIN
 --1
 Create VIEW pos_libres AS
 	Select p.nro_posicion, case ap.estado when true then 'ocupado' when false then 'libre' when  null then 'libre'END,
-       CASE ap.estado when true then ap.nro_fila END,  CASE ap.estado when true then ap.nro_estanteria END
+    CASE ap.estado when true then ap.nro_fila END,  CASE ap.estado when true then ap.nro_estanteria END
 	FROM gr05_posicion p FULL JOIN gr05_alquiler_posiciones ap
 	ON p.nro_posicion = ap.nro_posicion and p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
-	inner join gr05_alquiler a on a.id_alquiler = ap.id_alquiler
+	inner join gr05_alquiler a on a.id_alquiler = ap.id_alquiler;
 --2
 Create VIEW dinero_invertido AS
 	select a.id_cliente, SUM(importe_dia)
-	from cliente c inner join alquiler a on c.cuit_cuil=a.id_cliente
-	where (year(getdate()) -1)<a.fecha_desde AND (year(getdate()))>a.fecha_desde
+	from gr05_cliente c inner join gr05_alquiler a on c.cuit_cuil=a.id_cliente
+	where  EXTRACT(YEAR FROM CAST(current_date AS date))-1< EXTRACT(YEAR FROM CAST(a.fecha_desde AS date)) AND  EXTRACT(YEAR FROM CAST(current_date as date))> EXTRACT(YEAR FROM CAST(a.fecha_desde as date))
 	group by a.id_cliente, importe_dia
-	order by 2 asc
+	order by 2 desc
 	limit 10
