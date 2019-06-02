@@ -2,6 +2,22 @@
 -- Last modification date: 2019-06-02 13:42:34.11
 
 -- foreign keys
+Alter TABLE GR05_ALQUILER
+    DROP CONSTRAINT fecha_valida;
+
+DROP TRIGGER peso_valido on pallet;
+DROP FUNCTION funcion_comprobar_peso();
+ALTER TABLE posicion
+    DROP CONSTRAINT tipo_posicion_valida;
+
+DROP FUNCTION pos_libres();
+
+DROP FUNCTION traer_clientes();
+
+DROP VIEW pos_libres;
+
+DROP VIEW dinero_invertido;
+
 ALTER TABLE GR05_FILA
     DROP CONSTRAINT FK_FILA_ESTANTERIA;
 
@@ -68,4 +84,6 @@ DROP TABLE GR05_PALLET;
 DROP TABLE GR05_POSICION;
 
 -- End of file.
+
+
 
