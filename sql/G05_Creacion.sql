@@ -316,26 +316,26 @@ INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (2,
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (3,19,2,'insecticidas');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (4,8,3,'inflamable');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (5,8,3,'insecticidas');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (6,17,4,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (6,17,4,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (7,17,4,'inflamable');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (8,15,5,'insecticidas');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (9,15,5,'general');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (10,20,6,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (10,20,6,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (11,20,6,'inflamable');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (12,16,7,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (12,16,7,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (13,16,7,'general');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (14,18,8,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (14,18,8,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (15,18,8,'general');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (16,18,8,'inflamable');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (17,19,9,'insecticidas');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (18,19,9,'inflamable');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (19,19,9,'inflamable');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (20,2,10,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (20,2,10,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (21,2,10,'insecticidas');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (22,2,10,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (22,2,10,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (23,13,37,'general');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (24,13,37,'insecticidas');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (25,13,37,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (25,13,37,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (26,4,36,'inflamable');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (27,4,36,'insecticidas');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (28,4,36,'insecticidas');
@@ -348,7 +348,7 @@ INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (34
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (35,5,25,'general');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (36,19,16,'general');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (37,19,16,'inflamable');
-INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (38,19,16,'vidrio');
+INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (38,19,16,'viEio');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (39,19,16,'insecticidas');
 INSERT INTO gr05_posicion (nro_posicion,nro_estanteria,nro_fila,tipo) VALUES (40,3,14,'general');
 
@@ -390,13 +390,69 @@ INSERT INTO gr05_alquiler_posiciones (id_alquiler, nro_posicion, nro_estanteria,
 
 --pallet
 INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values ( 1, 'Essential fatty acid [EFA] deficiency', 5);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (7, 'Laceration of musc/tend at lower leg level, left leg, subs', 10);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (19, 'Sudden visual loss', 28);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (13, 'Loose body in wrist', 25);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (2, 'Unspecified superficial injury of left ear, subs encntr', 40);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (7, 'Agenesis, aplasia and hypoplasia of pancreas', 50, true);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (19, 'Oth nondisp fx of upr end l humer, subs for fx w routn heal', 42;
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (6, 'Unsp injury of adductor musc/fasc/tend unsp thigh', 39);
-INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (20, 'Sltr-haris Type I physeal fx lower end of unsp femur, init', 21);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (2, 'Laceration of musc/tend at lower leg level, left leg, subs', 10);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (3, 'Sudden visual loss', 28);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (4, 'Loose body in wrist', 25);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (5, 'Unspecified superficial injury of left ear, subs encntr', 40);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (6, 'Agenesis, aplasia and hypoplasia of pancreas', 50, true);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (7, 'Oth nondisp fx of upr end l humer, subs for fx w routn heal', 42;
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (8, 'Unsp injury of adductor musc/fasc/tend unsp thigh', 39);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (9, 'Sltr-haris Type I physeal fx lower end of unsp femur, init', 21);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (10, 'Diabetes with prolif diabetic rtnop with trctn dtch n-mcla', 20);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (11, 'Sltr-haris Type I physeal fx lower end of unsp femur, init', 21);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (12, 'Sltr-haris Type I physeal fx lower end of unsp femur, init', 21);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (13, 'Sltr-haris Type I physeal fx lower end of unsp femur, init', 21);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (14, 'Diabetes with prolif diabetic rtnop with trctn dtch n-mcla', 20);
 INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (15, 'Diabetes with prolif diabetic rtnop with trctn dtch n-mcla', 20);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (16, 'Diabetes with prolif diabetic rtnop with trctn dtch n-mcla', 20);
+INSERT INTO gr05_pallet(cod_pallet, descripcion, peso) values (17, 'Diabetes with prolif diabetic rtnop with trctn dtch n-mcla', 20);
+
+--movimiento
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (1, '2019-01-15 03:28:54', 'Buddy Torrans', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (2, '2019-03-29 16:48:47', 'Cory Yantsev', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (3, '2019-01-17 00:52:23', 'Odella Walden', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (4, '2019-01-25 20:52:47', 'Judy Clashe', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (5, '2018-06-24 22:17:53', 'Niki Blonfield', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (6, '2018-11-01 16:27:17', 'Nikita Howood', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (7, '2018-10-12 14:35:50', 'Keeley Dorrington', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (8, '2019-01-10 12:49:52', 'Martyn Swainson', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (9, '2018-08-18 17:48:25', 'Birch Conti', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (10, '2019-02-11 16:38:48', 'Lind Chatell', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (11, '2018-06-03 23:29:15', 'Jethro Heatley', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (12, '2019-03-03 04:38:08', 'Eleanor Paddeley', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (13, '2018-07-07 16:23:32', 'Padgett Blanche', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (14, '2018-10-04 06:33:54', 'Frasquito Pawellek', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (15, '2018-07-27 00:07:25', 'Eugine Heilds', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (16, '2018-09-05 09:39:29', 'Lin Oblein', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (17, '2018-11-19 06:12:38', 'Conrad Blagburn', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (18, '2018-09-13 05:35:57', 'Genevra Yetts', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (19, '2019-04-02 19:49:14', 'Russ Flaunders', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (20, '2019-03-09 03:21:12', 'Aurel Kynman', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (21, '2018-09-13 20:34:44', 'Justinian Guidetti', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (22, '2019-03-17 08:12:15', 'Cyrillus Helks', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (23, '2018-09-22 21:20:55', 'Kirstyn Russe', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (24, '2018-10-30 06:59:51', 'Amaleta Vedeneev', 'E');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (25, '2019-05-06 13:29:18', 'Meier Jirieck', 'I');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (26, '2018-10-15 10:50:18', 'Hughie Wilding', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (27, '2018-08-04 09:30:04', 'Pris Castellan', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (28, '2018-12-10 02:21:17', 'Winn Smaling', 'S');
+insert into gr05_movimiento (id_movimiento, fecha, responsable, tipo) values (29, '2018-11-16 21:24:22', 'Nollie Kingsnode', 'S');
+
+-- Mov entrada
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (1, '2019-03-31 03:03:49', 1, 1, 1, 1, 1, 1, 1);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (5, '2018-12-17 21:26:01', 2, 2, 2, 2, 2, 2, 2);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (10, '2019-04-19 03:04:09', 3, 3, 3, 3, 3, 3, 3);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (11, '2018-09-20 02:10:28', 4, 4, 4, 4, 4, 4, 4);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (14, '2019-04-26 12:12:49', 5, 5, 5, 5, 5, 5, 5);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (15, '2018-10-03 07:34:48', 6, 6, 6, 6, 6, 6, 6);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (21, '2019-02-05 08:08:05', 7, 7, 7, 7, 7, 7, 7);
+insert into GR05_MOV_ENTRADA (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) values (24, '2018-11-20 15:00:51', 8, 8, 8, 8, 8, 8, 8);
+
+--Mov Salida
+insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (1, '2019-01-15 03:28:54', 'Buddy Torrans', 24);
+insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (2, '2019-03-29 16:48:47', 'Cory Yantsev', 21);
+insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (3, '2019-01-17 00:52:23', 'Odella Walden', 15);
+insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (4, '2019-01-25 20:52:47', 'Judy Clashe', 14);
+insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (5, '2018-06-24 22:17:53', 'Niki Blonfield', 11);
+insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (6, '2018-11-01 16:27:17', 'Nikita Howood', 10);
 
