@@ -30,7 +30,7 @@ public class ClienteController {
     }
 
     @PutMapping("/{id}")
-    public Cliente update(Cliente c, @PathVariable (value = "id") long id){
+    public Cliente update(@RequestBody Cliente c, @PathVariable (value = "id") long id){
         return clienteService.update(c,id);
     }
 

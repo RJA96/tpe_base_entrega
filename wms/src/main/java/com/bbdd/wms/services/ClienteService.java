@@ -5,6 +5,8 @@ import com.bbdd.wms.repos.ClienteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Service
@@ -31,7 +33,9 @@ public class ClienteService {
     public Cliente update(Cliente c, long id){
         if (clienteDao.existsById(id)) {
             c.setCuitCuil(id);
-            return clienteDao.save(c);
+            Cliente cl= clienteDao.getOne(id);
+            cl.setAll(c);
+            return clienteDao.save(cl);
         } else throw new IllegalArgumentException();
     }
 
