@@ -18,9 +18,10 @@ function mostrarpag(url) {
               document.querySelector(".edit").addEventListener("click", edit);
             }
             if (url==="div/Alquileres.html"){
-              document.querySelector(".create").addEventListener("click", create);
-              document.querySelector(".delete").addEventListener("click", delate);
-              document.querySelector(".edit").addEventListener("click", edit);
+            //  document.querySelector(".create").addEventListener("click", create);
+        //      document.querySelector(".delete").addEventListener("click", delate);
+          //    document.querySelector(".edit").addEventListener("click", edit);
+              load();
             }
             if (url==="div/Posiciones.html"){
                 document.querySelector(".create").addEventListener("click", create);
@@ -43,4 +44,14 @@ function mostrarpag(url) {
   
         .catch(error => console.log(error))
       });
+  }
+
+  function load(){
+  //  let container = document.querySelector("."+url);
+    fetch('http://localhost:8080/api/v1/Alquiler',{mode: 'no-cors'})
+              .then(r => r.json())
+              .then(json =>  console.log(json))
+              .then(mostrarfiltros)
+              .then(resaltar)
+              .catch(error => container.innerHTML= "error");
   }

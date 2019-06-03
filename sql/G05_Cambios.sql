@@ -7,7 +7,7 @@ CHECK (fecha_desde < fecha_hasta);
 --b.
 --rise exception y se puede usar else
 CREATE TRIGGER peso_valido
-	AFTER INSERT ON gr05_pallet
+	AFTER INSERT ON gr05_mov_entrada
 	FOR EACH ROW
 	EXECUTE PROCEDURE funcion_comprobar_peso();
 
@@ -20,14 +20,11 @@ BEGIN
 							inner join gr05_alquier_posiciones ap on ap.nro_estanteria=p.nro_estanteria and ap.nro_fila = p.nro_fila
 							inner join gr05_mov_entrada me on ap.nro_estanteria=me.nro_estanteria and ap.nro_fila = me.nro_fila
 							inner join gr05_pallet p on me.cod_pallet=p.cod_pallet
-				where f.nro_estanteria = (select me.nro_estanteria
-											from gr05_mov_entrada me
-											where me.cod_pallet= new.cod_pallet)
-				AND f.nro_fila=(select me.nro_fila
-									from gr_05mov_entrada me
-									where me.cod_pallet= new.cod_pallet)
-				group by f.nro_fila, f.nro_estanteria
-				HAVING SUM(p.peso)< new.peso
+				where me.new.nro_estanteria AND me.new.nro_fila
+				group by me.nro_fila, me.nro_estanteria
+				HAVING SUM(f.peso)< (SELECT peso
+									FROM pallet p
+									where cod_pallet=new.cod.pallet)
 				)) THEN
 			RAISE exception  'el peso maximo es superado';
 		END IF;
@@ -80,7 +77,7 @@ BEGIN
 --D)
 --1
 Create VIEW pos_libres AS
-	Select p.nro_posicion, case ap.estado when true then 'ocupado' when false then 'libre' when  null then 'libre'END,
+	Select p.nro_posicion, case ap.estado when true then 'ocupado',ap.nro_fila,ap.nro_estanteria when false then 'libre' when  null then 'libre'END,
     CASE ap.estado when true then ap.nro_fila END,  CASE ap.estado when true then ap.nro_estanteria END
 	FROM gr05_posicion p FULL JOIN gr05_alquiler_posiciones ap
 	ON p.nro_posicion = ap.nro_posicion and p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
