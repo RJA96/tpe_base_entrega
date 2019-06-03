@@ -19,7 +19,7 @@ public class AlquilerService {
     }
 
     public Alquiler save(Alquiler c){
-        if(alquilerDao.existsById(c.getIdAlquiler())){
+        if(!alquilerDao.existsById(c.getIdAlquiler())){
             return alquilerDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

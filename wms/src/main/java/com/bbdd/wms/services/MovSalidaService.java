@@ -24,7 +24,7 @@ public class MovSalidaService {
     }
 
     public MovSalida save(MovSalida c){
-        if(movSalidaDao.existsById(c.getIdMovimiento())){
+        if(!movSalidaDao.existsById(c.getIdMovimiento())){
             return movSalidaDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

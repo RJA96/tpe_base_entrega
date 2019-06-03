@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -28,5 +29,9 @@ public class Movimiento {
     this.fecha=c.getFecha();
     this.responsable=c.getResponsable();
     this.tipo=c.getTipo();
+  }
+  @Override
+  public void finalize(){
+
   }
 }

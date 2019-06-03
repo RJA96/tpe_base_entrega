@@ -1,4 +1,4 @@
 package com.bbdd.wms.exceptions;
 
-public class ElementAlreadyExistsException extends RuntimeException {
+public class ElementAlreadyExistsException extends IllegalArgumentException {
 }

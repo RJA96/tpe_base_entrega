@@ -21,7 +21,7 @@ public class EstanteriaService {
     }
 
     public Estanteria save(Estanteria c){
-        if(estanteriaDao.existsById(c.getNroEstanteria())){
+        if(!estanteriaDao.existsById(c.getNroEstanteria())){
             return estanteriaDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

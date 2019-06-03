@@ -20,7 +20,7 @@ public class AlquilerPosicionesService {
     }
 
     public AlquilerPosiciones save(AlquilerPosiciones c) {
-        if(alquilerPosicionesDao.existsById(c.getIdAlquiler())){
+        if(!alquilerPosicionesDao.existsById(c.getIdAlquiler())){
             return alquilerPosicionesDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

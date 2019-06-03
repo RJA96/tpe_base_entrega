@@ -24,7 +24,7 @@ public class MovInternoService {
     }
 
     public MovInterno save(MovInterno c){
-        if(movInternoDao.existsById(c.getIdMovimiento())){
+        if(!movInternoDao.existsById(c.getIdMovimiento())){
             return movInternoDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

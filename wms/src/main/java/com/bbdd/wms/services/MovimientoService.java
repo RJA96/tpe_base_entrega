@@ -23,7 +23,7 @@ public class MovimientoService {
     }
 
     public Movimiento save(Movimiento c){
-        if(movimientoDao.existsById(c.getIdMovimiento())){
+        if(!movimientoDao.existsById(c.getIdMovimiento())){
             return movimientoDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

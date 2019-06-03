@@ -22,7 +22,7 @@ public class FilaService {
     }
 
     public Fila save(Fila c){
-        if(filaDao.existsById(c.getNroFila())){
+        if(!filaDao.existsById(c.getNroFila())){
             return filaDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

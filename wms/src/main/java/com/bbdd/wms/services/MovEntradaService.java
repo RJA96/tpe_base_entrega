@@ -22,7 +22,7 @@ public class MovEntradaService {
     }
 
     public MovEntrada save(MovEntrada c){
-        if(movEntradaDao.existsById(c.getIdMovimiento())){
+        if(!movEntradaDao.existsById(c.getIdMovimiento())){
             return movEntradaDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }

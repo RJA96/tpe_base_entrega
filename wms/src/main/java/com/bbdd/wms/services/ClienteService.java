@@ -21,7 +21,7 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c){
-        if(clienteDao.existsById(c.getCuitCuil())){
+        if(!clienteDao.existsById(c.getCuitCuil())){
             return clienteDao.save(c);
         } else throw new ElementAlreadyExistsException();
     }
