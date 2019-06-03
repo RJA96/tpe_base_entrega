@@ -27,4 +27,15 @@ public class MovEntrada{
   private long nroEstanteria;
   private long nroFila;
 
+    public void setAll(MovEntrada c) {
+      this.idMovimiento=c.getIdMovimiento();
+      this.transporte=c.getTransporte();
+      this.guia=c.getGuia();
+      this.codPallet=c.getCodPallet();
+      this.idAlquiler=c.getIdAlquiler();
+      this.posGlobal=c.getPosGlobal();
+      this.nroPosicion=c.getNroPosicion();
+      this.nroEstanteria=c.getNroEstanteria();
+      this.nroFila=c.getNroFila();
+    }
 }

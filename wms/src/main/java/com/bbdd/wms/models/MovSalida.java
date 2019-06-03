@@ -22,40 +22,10 @@ public class MovSalida {
   private String guia;
   private long idMovimientoEntrada;
 
-
-  public long getIdMovimiento() {
-    return idMovimiento;
-  }
-
-  public void setIdMovimiento(long idMovimiento) {
-    this.idMovimiento = idMovimiento;
-  }
-
-
-  public String getTransporte() {
-    return transporte;
-  }
-
-  public void setTransporte(String transporte) {
-    this.transporte = transporte;
-  }
-
-
-  public String getGuia() {
-    return guia;
-  }
-
-  public void setGuia(String guia) {
-    this.guia = guia;
-  }
-
-
-  public long getIdMovimientoEntrada() {
-    return idMovimientoEntrada;
-  }
-
-  public void setIdMovimientoEntrada(long idMovimientoEntrada) {
-    this.idMovimientoEntrada = idMovimientoEntrada;
-  }
-
+    public void setAll(MovSalida c) {
+      this.idMovimiento=c.getIdMovimiento();
+      this.transporte=c.getTransporte();
+      this.guia=c.getGuia();
+      this.idMovimientoEntrada=c.getIdMovimientoEntrada();
+    }
 }

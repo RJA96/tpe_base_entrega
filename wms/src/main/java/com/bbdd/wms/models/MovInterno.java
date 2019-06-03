@@ -27,4 +27,13 @@ public class MovInterno {
   private long nroEstanteria;
   private long nroFila;
 
+    public void setAll(MovInterno c) {
+      this.idMovimiento=c.getIdMovimiento();
+      this.razon=c.getRazon();
+      this.idMovimientoEntrada=c.getIdMovimientoEntrada();
+      this.idMovimientoInterno=c.getIdMovimientoInterno();
+      this.posGlobal=c.getPosGlobal();
+      this.nroPosicion=c.getNroPosicion();
+      this.nroFila=c.getNroFila();
+    }
 }

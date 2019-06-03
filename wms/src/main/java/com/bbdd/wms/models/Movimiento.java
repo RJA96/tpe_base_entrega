@@ -23,4 +23,10 @@ public class Movimiento {
   private String responsable;
   private String tipo;
 
+  public void setAll(Movimiento c) {
+    this.idMovimiento=c.getIdMovimiento();
+    this.fecha=c.getFecha();
+    this.responsable=c.getResponsable();
+    this.tipo=c.getTipo();
+  }
 }

@@ -23,4 +23,10 @@ public class Fila {
   private String nombreFila;
   private String pesoMaxKg;
 
+    public void setAll(Fila c) {
+      this.nroEstanteria= c.getNroEstanteria();
+      this.nroFila=c.getNroFila();
+      this.nombreFila=c.getNombreFila();
+      this.pesoMaxKg=c.getPesoMaxKg();
+    }
 }
