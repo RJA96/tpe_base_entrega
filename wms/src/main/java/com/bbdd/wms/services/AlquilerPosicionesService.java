@@ -1,5 +1,6 @@
 package com.bbdd.wms.services;
 
+import com.bbdd.wms.exceptions.ElementAlreadyExistsException;
 import com.bbdd.wms.models.Alquiler;
 import com.bbdd.wms.models.AlquilerPosiciones;
 import com.bbdd.wms.repos.AlquilerPosicionesDao;
@@ -18,8 +19,10 @@ public class AlquilerPosicionesService {
         return alquilerPosicionesDao.findAll();
     }
 
-    public AlquilerPosiciones save(AlquilerPosiciones c){
-        return alquilerPosicionesDao.save(c);
+    public AlquilerPosiciones save(AlquilerPosiciones c) {
+        if(alquilerPosicionesDao.existsById(c.getIdAlquiler())){
+            return alquilerPosicionesDao.save(c);
+        } else throw new ElementAlreadyExistsException();
     }
 
     public AlquilerPosiciones getOne(long id){

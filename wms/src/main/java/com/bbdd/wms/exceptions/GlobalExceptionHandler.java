@@ -21,4 +21,8 @@ public class GlobalExceptionHandler {
         @ExceptionHandler(NullPointerException.class)
         public void nullPointerExceptionHandler(){}
 
+        @ResponseStatus(value = HttpStatus.IM_USED, reason = "Element with provided ID already exists")
+        @ExceptionHandler(ElementAlreadyExistsException.class)
+        public void elementAlreadyExists(){}
+
 }

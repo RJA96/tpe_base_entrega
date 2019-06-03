@@ -1,5 +1,6 @@
 package com.bbdd.wms.services;
 
+import com.bbdd.wms.exceptions.ElementAlreadyExistsException;
 import com.bbdd.wms.models.Alquiler;
 import com.bbdd.wms.repos.AlquilerDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ public class AlquilerService {
     }
 
     public Alquiler save(Alquiler c){
-        return alquilerDao.save(c);
+        if(alquilerDao.existsById(c.getIdAlquiler())){
+            return alquilerDao.save(c);
+        } else throw new ElementAlreadyExistsException();
     }
 
     public Alquiler getOne(long id){

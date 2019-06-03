@@ -1,5 +1,6 @@
 package com.bbdd.wms.services;
 
+import com.bbdd.wms.exceptions.ElementAlreadyExistsException;
 import com.bbdd.wms.models.Cliente;
 import com.bbdd.wms.repos.ClienteDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente c){
-        return clienteDao.save(c);
+        if(clienteDao.existsById(c.getCuitCuil())){
+            return clienteDao.save(c);
+        } else throw new ElementAlreadyExistsException();
     }
 
     public Cliente getOne(long id){
