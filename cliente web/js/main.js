@@ -47,11 +47,12 @@ function mostrarpag(url) {
   }
 
   function load(){
-  //  let container = document.querySelector("."+url);
-    fetch('http://localhost:8080/api/v1/Alquiler',{mode: 'no-cors'})
+    fetch('http://localhost:8080/api/v1/Alquiler')
               .then(r => r.json())
               .then(json =>  console.log(json))
-              .then(mostrarfiltros)
-              .then(resaltar)
               .catch(error => container.innerHTML= "error");
+  }
+
+  function mostraralquiler(json){
+      
   }
