@@ -21,4 +21,8 @@ public class Estanteria {
   private long nroEstanteria;
   private String nombreEstanteria;
 
+  public void setAll(Estanteria c) {
+    this.nroEstanteria=c.getNroEstanteria();
+    this.nombreEstanteria=c.getNombreEstanteria();
+  }
 }
