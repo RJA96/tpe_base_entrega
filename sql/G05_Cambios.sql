@@ -77,8 +77,8 @@ BEGIN
 --D)
 --1
 Create VIEW pos_libres AS
-	Select p.nro_posicion, case ap.estado when true then 'ocupado',ap.nro_fila,ap.nro_estanteria when false then 'libre' when  null then 'libre'END,
-    CASE ap.estado when true then ap.nro_fila END,  CASE ap.estado when true then ap.nro_estanteria END
+	Select p.nro_posicion, case when ap.estado = true then  (ap.nro_fila, ap.nro_estanteria )when ap.estado= false then libre when
+	    ap.estado=null then (2)END
 	FROM gr05_posicion p FULL JOIN gr05_alquiler_posiciones ap
 	ON p.nro_posicion = ap.nro_posicion and p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
 	inner join gr05_alquiler a on a.id_alquiler = ap.id_alquiler;
