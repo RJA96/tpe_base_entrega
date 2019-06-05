@@ -37,7 +37,7 @@ DROP FUNCTION FN_GR05_funcion_comprobar_peso()
 DROP TRIGGER TR_GR05_peso_valido on gr05_mov_entrada
 
 --c
-ALTER TABLE posicion
+ALTER TABLE gr_05posicion
 ADD CONSTRAINT UQ_GR05_posicion_tipo_posicion_valida
 CHECK (tipo like 'general' or tipo like 'vidrio' or tipo like 'insecticidas' or tipo like 'inflamable')
 --C)
@@ -96,3 +96,17 @@ LANGUAGE plpgsql;
 
 SELECT *
 FROM FN_GR05_pos_libres_fecha(ACA VA DATE$$$$)
+
+Create FUNCTION FN_GR05_pos_ocupadas_cliente (cliente_ingresado int)
+RETURNS table (nro_posicion int) AS $$
+BEGIN
+	RETURN QUERY
+		SELECT p.nro_posicion
+		FROM gr05_posicion p INNER join gr05_alquiler_posiciones g05ap on p.pos_global = g05ap.pos_global and p.nro_posicion = g05ap.nro_posicion and p.nro_estanteria = g05ap.nro_estanteria and p.nro_fila = g05ap.nro_fila
+		INNER join gr05_alquiler g05a on g05ap.id_alquiler = g05a.id_alquiler
+		WHERE ((current_date > g05a.fecha_hasta) or (g05ap.id_alquiler is null)) and g05a.id_cliente=cliente_ingresado;
+END; $$
+LANGUAGE plpgsql;
+
+SELECT *
+FROM FN_GR05_pos_ocupadas_cliente(ACA VA INT$$$$id_cliente)
