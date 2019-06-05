@@ -3,20 +3,26 @@
 
 -- foreign keys
 Alter TABLE GR05_ALQUILER
-    DROP CONSTRAINT fecha_valida;
+    DROP CONSTRAINT UQ_GR05_alquiler_fecha_valida;
 
-DROP TRIGGER peso_valido on pallet;
-DROP FUNCTION funcion_comprobar_peso();
-ALTER TABLE posicion
-    DROP CONSTRAINT tipo_posicion_valida;
+DROP TRIGGER TR_GR05_peso_valido on gr05_mov_entrada;
+DROP FUNCTION FN_GR05_funcion_comprobar_peso();
 
-DROP FUNCTION pos_libres();
+ALTER TABLE gr05_posicion
+    DROP CONSTRAINT UQ_GR05_posicion_tipo_posicion_valida;
 
-DROP FUNCTION traer_clientes();
+DROP FUNCTION FN_GR05_pos_libres(date);
 
-DROP VIEW pos_libres;
+DROP FUNCTION FN_GR05_vencimiento_alquiler(INTEGER);
 
-DROP VIEW dinero_invertido;
+DROP VIEW GR05_pos_libres;
+
+DROP VIEW GR05_dinero_invertido;
+
+drop function fn_gr05_pos_libres_fecha(date);
+
+drop function fn_gr05_pos_ocupadas_cliente(integer);
+
 
 ALTER TABLE GR05_FILA
     DROP CONSTRAINT FK_FILA_ESTANTERIA;
