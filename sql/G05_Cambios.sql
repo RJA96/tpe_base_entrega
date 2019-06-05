@@ -48,22 +48,20 @@ RETURNS table (nro_estanteria int, nro_fila int, nro_posicion int) AS $$
 BEGIN
 	RETURN QUERY
 		SELECT  p.nro_estanteria, p.nro_fila, p.nro_posicion
-FROM gr05_posicion p full join gr05_alquiler_posiciones g05ap on p.pos_global = g05ap.pos_global and p.nro_posicion = g05ap.nro_posicion and p.nro_estanteria = g05ap.nro_estanteria and p.nro_fila = g05ap.nro_fila
-full join gr05_alquiler g05a on g05ap.id_alquiler = g05a.id_alquiler
-WHERE g05a = fechaingresada and g05ap.id_alquiler is null;
+		FROM gr05_posicion p full join gr05_alquiler_posiciones g05ap on p.pos_global = g05ap.pos_global and p.nro_posicion = g05ap.nro_posicion and p.nro_estanteria = g05ap.nro_estanteria and p.nro_fila = g05ap.nro_fila
+		full join gr05_alquiler g05a on g05ap.id_alquiler = g05a.id_alquiler
+		WHERE g05a = fechaingresada and g05ap.id_alquiler is null;
 END; $$
-	LANGUAGE plpgsql;
+LANGUAGE plpgsql;
 
 --2
 Create FUNCTION FN_GR05_vencimiento_alquiler (dias_ingresados int)
 RETURNS table (id_cliente int, dias_restantes int) AS $$
 BEGIN
 	RETURN QUERY
-		SELECT id_cliente, 
-		FROM gr05_cliente
-		WHERE cuit_cuil IN (select id_cliente
-                    		FROM gr05_alquiler
-                    		WHERE fecha_hasta - current_date = dias_ingresados);
+		SELECT id_cliente, fecha_hasta - current_date
+		FROM gr05_cliente join gr05_alquiler g05a on gr05_cliente.cuit_cuil = g05a.id_cliente
+		WHERE fecha_hasta - current_date = dias_ingresados;
 END; $$
 LANGUAGE plpgsql;
 --D)
@@ -77,10 +75,10 @@ Create VIEW GR05_pos_libres AS
 	full join gr05_alquiler a on a.id_alquiler = ap.id_alquiler;
 --2
 Create VIEW GR05_dinero_invertido AS
-	select a.id_cliente, SUM(importe_dia)
+	select a.id_cliente, SUM(importe_dia*(fecha_hasta-fecha_desde))
 	from gr05_cliente c inner join gr05_alquiler a on c.cuit_cuil=a.id_cliente
-	where  EXTRACT(YEAR FROM CAST(current_date AS date))-1< EXTRACT(YEAR FROM CAST(a.fecha_desde AS date)) AND  EXTRACT(YEAR FROM CAST(current_date as date))> EXTRACT(YEAR FROM CAST(a.fecha_desde as date))
-	group by a.id_cliente, importe_dia
+	where  EXTRACT(YEAR FROM CAST(current_date AS date))-1< EXTRACT(YEAR FROM a.fecha_desde) AND  EXTRACT(YEAR FROM CAST(current_date as date))> EXTRACT(YEAR FROM a.fecha_desde)
+	group by a.id_cliente
 	order by 2 desc
 	limit 10
 --E)
@@ -92,7 +90,7 @@ BEGIN
 		SELECT p.nro_posicion
 		FROM gr05_posicion p full join gr05_alquiler_posiciones g05ap on p.pos_global = g05ap.pos_global and p.nro_posicion = g05ap.nro_posicion and p.nro_estanteria = g05ap.nro_estanteria and p.nro_fila = g05ap.nro_fila
 		full join gr05_alquiler g05a on g05ap.id_alquiler = g05a.id_alquiler
-		WHERE (fecha > g05a.fecha_hasta) or (g05ap.id_alquiler is null);
+		WHERE ((fecha > g05a.fecha_hasta) or (g05ap.id_alquiler is null)) and p.nro_posicion is not null;
 END; $$
 LANGUAGE plpgsql;
 
