@@ -314,17 +314,17 @@ INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo)
 INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (4, '2019-06-03 19:09:43.067518', 'Pepsico', 'E');
 INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (5, '2019-06-04 19:09:43.067518', 'Logstore', 'E');
 
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (6, '2019-06-04 19:09:43.067518', 'Pureza', 'S');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (7, '2019-06-04 19:09:43.067518', 'Pureza', 'S');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (8, '2019-06-04 19:09:43.067518', 'Pureza', 'S');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (9, '2019-06-04 19:09:43.067518', 'Pureza', 'S');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (10, '2019-06-04 19:09:43.067518', 'Pureza', 'S');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (6, '2019-02-04 19:09:43.067518', 'Logstore', 'S');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (7, '2019-04-04 19:09:43.067518', 'Pepsico', 'S');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (8, '2019-03-04 19:09:43.067518', 'Coca-Cola', 'S');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (9, '2019-04-04 19:09:43.067518', 'Coca-Cola', 'S');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (10, '2018-08-04 19:09:43.067518', 'Logstore', 'S');
 
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (8, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (9, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (10, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (11, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
---INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (12, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (11, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (12, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (13, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (14, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
+INSERT INTO unc_248381.gr05_movimiento (id_movimiento, fecha, responsable, tipo) VALUES (15, '2019-06-04 19:09:43.067518', 'Pureza', 'I');
 
 
 
@@ -336,7 +336,16 @@ INSERT INTO unc_248381.gr05_mov_entrada (id_movimiento, transporte, guia, cod_pa
 INSERT INTO unc_248381.gr05_mov_entrada (id_movimiento, transporte, guia, cod_pallet, id_alquiler, pos_global, nro_posicion, nro_estanteria, nro_fila) VALUES (5, 'Camioneta', 'Walden', 5, 5, 5, 1, 1,2);
 
 --Mov Salida
---insert into GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (1, '2019-01-15 03:28:54', 'Buddy Torrans', 24);
+insert into unc_248381.GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (6, 'camion', 'Walden', 1);
+insert into unc_248381.GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (7, 'camion', 'Torrans', 2);
+insert into unc_248381.GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (8, 'camioneta', 'Buddy ', 3);
+insert into unc_248381.GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (9, 'camion', 'Torrans', 4);
+insert into unc_248381.GR05_MOV_SALIDA (id_movimiento, transporte, guia,id_movimiento_entrada) values (10, 'camion', 'Torrans', 5);
 
 
 --mov_interno;
+insert into unc_248381.gr05_mov_interno (id_movimiento, razon, id_movimiento_entrada, pos_global, nro_posicion, nro_estanteria, nro_fila) VALUES (1,'salida', 1, 1, 1, 2,1);
+insert into unc_248381.gr05_mov_interno (id_movimiento, razon, id_movimiento_entrada, pos_global, nro_posicion, nro_estanteria, nro_fila) VALUES (2,'salida', 2, 2, 2, 1, 3);
+insert into unc_248381.gr05_mov_interno (id_movimiento, razon, id_movimiento_entrada, pos_global, nro_posicion, nro_estanteria, nro_fila) VALUES (3,'salida', 3, 3, 1, 1, 3);
+insert into unc_248381.gr05_mov_interno (id_movimiento, razon, id_movimiento_entrada, pos_global, nro_posicion, nro_estanteria, nro_fila) VALUES (4,'salida',4, 4, 2, 1,2);
+insert into unc_248381.gr05_mov_interno (id_movimiento, razon, id_movimiento_entrada, pos_global, nro_posicion, nro_estanteria, nro_fila) VALUES (5,'salida', 5, 5, 1, 1,2);
