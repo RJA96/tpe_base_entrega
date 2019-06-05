@@ -10,14 +10,14 @@ BEGIN
 	if TG_OP = 'INSERT' THEN
 		if (EXISTS(select 1
 				from gr05_fila f inner join gr05_posicion p on f.nro_estanteria=p.nro_estanteria and f.nro_fila = p.nro_fila
-							inner join gr05_alquier_posiciones ap on ap.nro_estanteria=p.nro_estanteria and ap.nro_fila = p.nro_fila
+							inner join gr05_alquiler_posiciones ap on ap.nro_estanteria=p.nro_estanteria and ap.nro_fila = p.nro_fila
 							inner join gr05_mov_entrada me on ap.nro_estanteria=me.nro_estanteria and ap.nro_fila = me.nro_fila
 							inner join gr05_pallet p on me.cod_pallet=p.cod_pallet
 				where new.nro_estanteria AND new.nro_fila
 				group by me.nro_fila, me.nro_estanteria
-				HAVING SUM(f.peso)< (SELECT peso
-									FROM pallet p
-									where cod_pallet=new.cod.pallet)
+				HAVING SUM(f.peso_max_kg)< (SELECT peso
+									FROM gr05_pallet p
+									where cod_pallet=new.cod_pallet)
 				)) THEN
 			RAISE exception  'el peso maximo es superado';
 		END IF;
@@ -63,12 +63,12 @@ LANGUAGE plpgsql;
 --D)
 --1
 Create VIEW GR05_pos_libres AS
-	Select p.nro_posicion, case when ap.id_alquiler is not null then  (ap.nro_fila, ap.nro_estanteria)END, (SELECT fecha_hasta-current_date
-                                                                       FROM gr05_alquiler a1 JOIN gr05_alquiler_posiciones ap1 ON a1.id_alquiler = ap1.id_alquiler
-                                                                       WHERE ap1.estado = true AND a.id_alquiler = a1.id_alquiler) AS dias_que_faltan
-	FROM gr05_posicion p FULL JOIN gr05_alquiler_posiciones ap
-	ON p.nro_posicion = ap.nro_posicion and p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
-	full join gr05_alquiler a on a.id_alquiler = ap.id_alquiler;
+  Select p.nro_posicion, coalesce( ap.nro_fila, -1) AS  numero_fila, coalesce(ap.nro_estanteria, -1) AS nro_estanteria, coalesce((SELECT fecha_hasta-current_date
+                                                                      FROM gr05_alquiler a1 JOIN gr05_alquiler_posiciones ap1 ON a1.id_alquiler = ap1.id_alquiler
+                                                                      WHERE a.id_alquiler = a1.id_alquiler),-1) AS dias_que_faltan
+  FROM gr05_posicion p FULL JOIN gr05_alquiler_posiciones ap
+  ON p.nro_posicion = ap.nro_posicion and p.nro_estanteria = ap.nro_estanteria and p.nro_fila = ap.nro_fila
+  full join gr05_alquiler a on a.id_alquiler = ap.id_alquiler;
 --2
 Create VIEW GR05_dinero_invertido AS
 	select a.id_cliente, SUM(importe_dia*(fecha_hasta-fecha_desde))
@@ -76,7 +76,7 @@ Create VIEW GR05_dinero_invertido AS
 	where ((extract(year from now()))-1 < extract(year from a.fecha_desde))
 	group by a.id_cliente
 	order by 2 desc
-	limit 10
+	limit 10;
 	
 --E)
 --1
