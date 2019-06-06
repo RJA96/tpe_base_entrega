@@ -22,4 +22,9 @@ public class Pallet {
   private String peso;
 
 
+    public void setAll(Pallet c) {
+      this.codPallet=c.getCodPallet();
+      this.descripcion=c.getDescripcion();
+      this.peso=c.getPeso();
+    }
 }
