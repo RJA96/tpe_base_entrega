@@ -24,48 +24,4 @@ public class Posicion {
   private String tipo;
 
 
-  public long getPosGlobal() {
-    return posGlobal;
-  }
-
-  public void setPosGlobal(long posGlobal) {
-    this.posGlobal = posGlobal;
-  }
-
-
-  public long getNroPosicion() {
-    return nroPosicion;
-  }
-
-  public void setNroPosicion(long nroPosicion) {
-    this.nroPosicion = nroPosicion;
-  }
-
-
-  public long getNroEstanteria() {
-    return nroEstanteria;
-  }
-
-  public void setNroEstanteria(long nroEstanteria) {
-    this.nroEstanteria = nroEstanteria;
-  }
-
-
-  public long getNroFila() {
-    return nroFila;
-  }
-
-  public void setNroFila(long nroFila) {
-    this.nroFila = nroFila;
-  }
-
-
-  public String getTipo() {
-    return tipo;
-  }
-
-  public void setTipo(String tipo) {
-    this.tipo = tipo;
-  }
-
 }
