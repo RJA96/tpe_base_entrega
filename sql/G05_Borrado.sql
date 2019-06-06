@@ -6,7 +6,7 @@ Alter TABLE GR05_ALQUILER
     DROP CONSTRAINT UQ_GR05_alquiler_fecha_valida;
 
 DROP TRIGGER TR_GR05_peso_valido on gr05_mov_entrada;
-DROP FUNCTION FN_GR05_funcion_comprobar_peso();
+DROP FUNCTION TRFN_GR05_funcion_comprobar_peso();
 
 ALTER TABLE gr05_posicion
     DROP CONSTRAINT UQ_GR05_posicion_tipo_posicion_valida;

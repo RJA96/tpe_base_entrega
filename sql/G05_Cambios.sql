@@ -4,7 +4,7 @@ Alter table Gr05_Alquiler
 ADD CONSTRAINT UQ_GR05_alquiler_fecha_valida
 CHECK (fecha_desde < fecha_hasta);
 --b.
-CREATE FUNCTION FN_GR05_funcion_comprobar_peso()
+CREATE FUNCTION TRFN_GR05_funcion_comprobar_peso()
 RETURNS trigger AS $body$
 BEGIN
 	if TG_OP = 'INSERT' THEN
@@ -29,7 +29,7 @@ LANGUAGE 'plpgsql';
 CREATE TRIGGER TR_GR05_peso_valido
 AFTER INSERT ON gr05_mov_entrada
 FOR EACH ROW
-EXECUTE PROCEDURE FN_GR05_funcion_comprobar_peso();
+EXECUTE PROCEDURE TRFN_GR05_funcion_comprobar_peso();
 
 --c
 ALTER TABLE gr05_posicion
