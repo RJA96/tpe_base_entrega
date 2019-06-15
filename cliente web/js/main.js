@@ -4,6 +4,8 @@ document.querySelector('.Posiciones').addEventListener("click", function(){mostr
 document.querySelector('.Filas-Estanterias').addEventListener("click", function(){mostrarpag("div/Filas-Estanterias.html")});
 document.querySelector('.Pallets').addEventListener("click", function(){mostrarpag("div/Pallets.html")});
 document.querySelector('.Movimientos').addEventListener("click", function(){mostrarpag("div/Movimientos.html")});
+document.querySelector('.pos-libres').addEventListener("click",function(){loadPosLibres()})
+document.querySelector('.cliente-pos').addEventListener("click",function(){loadAlquileresClientes()})
 
 function mostrarpag(url) {
     let container = document.querySelector(".use-ajax");
@@ -55,11 +57,46 @@ function mostrarpag(url) {
               .catch(error => container.innerHTML= "error");
   }
 
+  function loadAlquileresClientes(){
+    let container = document.querySelector(".containercliente");
+    let cliente = document.querySelector(".id_cliente").value
+    fetch('http://localhost:8080/api/v1/posicion/pos-ocupadas/'+cliente)
+              .then(r => r.json())
+              .then(json => mostrarPos_clientes(json,container))
+              .catch(error => container.innerHTML= "error");
+  }
+
+  function loadPosLibres(){
+    //let container = document.querySelector(".pos-libres")
+    let fecha = document.querySelector(".dia").value;
+    fetch('http://localhost:8080/api/v1/posicion/pos-libres/{date}?date='+fecha)
+              .then(r => r.json())
+              .then(json => console.log(json))
+              .catch(error => container.innerHTML= "error");
+  }
+  function mostrarPos_clientes(json,container){
+    let div = container;
+    div.innerHTML = '';
+    for (let i = 0; i < json.length; i++) {
+      let node = document.createElement("tr");
+      let td_estanteria = document.createElement("td");
+      let td_fila = document.createElement("td");
+      let td_posicion = document.createElement("td");
+      let estanteria = document.createTextNode(json[i].nro_estanteria);
+      let fila = document.createTextNode(json[i].nro_fila);
+      let posicion = document.createTextNode(json[i].nro_posicion);
+      node.appendChild(td_estanteria);
+      td_estanteria.appendChild(estanteria);
+      node.appendChild(td_fila);
+      td_fila.appendChild(fila);
+      node.appendChild(td_posicion);
+      td_posicion.appendChild(posicion);
+      div.appendChild(node)
+    }
+  }
   function mostraralquiler(json, container){
     let div = container;
     div.innerHTML = '';
-    
-    
     for (let i = 0; i < json.length; i++) {
       let node = document.createElement("tr");
       let td_alquiler = document.createElement("td");

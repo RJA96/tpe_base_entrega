@@ -42,9 +42,38 @@
     <Div class="container ">
         <div class="row justify-content-center"> 
             <div class="col-md-6 use-ajax">
-
+                <div class="">
+                    <h3>Posiciones libres por fecha</h3>
+                    <input type="text" class="dia" value="2015-05-05">
+                    <button type="button" class="pos-libres">Send</button>
+                </div>
             </div>
         </Div>
+        <div class="row justify-content-center"> 
+                <div class="col-md-6 use-ajax">
+                    <div class="">
+
+                        <h3>Posiciones por cliente</h3>
+                        <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>Numero Estanteria</th>
+                                        <th>Numero Fila</th>
+                                        <th>Numero Posicion</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="containercliente">
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <input type="text" class="id_cliente" value="1">
+                        <button type="button" class="cliente-pos">Send</button>
+                    </div>
+                </div>
+            </Div>
     </Div>
 </body>
 <script src='js/main.js'></script>

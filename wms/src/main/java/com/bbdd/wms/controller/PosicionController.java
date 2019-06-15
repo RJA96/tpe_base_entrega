@@ -3,6 +3,7 @@ package com.bbdd.wms.controller;
 import com.bbdd.wms.models.Posicion;
 import com.bbdd.wms.services.PosicionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -41,13 +42,13 @@ public class PosicionController {
         posicionService.delete(id);
     }
 
-    @GetMapping("/pos-libres")
-    public List<Map<Object,Object>> getPosicionesLibres(@RequestParam (value = "date") Date date){
+    @GetMapping("/pos-libres/{date}")
+    public List<Map<Object,Object>> getPosicionesLibres(@RequestParam("date") @DateTimeFormat(pattern="yyyy-MM-dd") Date date){
         return posicionService.getPosicionesLibres(date);
     }
 
-    @GetMapping("/pos-ocupadas")
-    public List<Map<Object,Object>> getPosicionesOcupadas(@RequestParam (value = "id") int id){
+    @GetMapping("/pos-ocupadas/{id}")
+    public List<Map<Object,Object>> getPosicionesOcupadas(@PathVariable (value = "id") int id){
         return posicionService.getPosicionesOcupadas(id);
     }
 }

@@ -53,6 +53,7 @@ public class PosicionService {
     public List<Map<Object, Object>> getPosicionesLibres(Date e) {
         return posicionDao.getFechasLibres(e);
     }
+
     public List<Map<Object, Object>> getPosicionesOcupadas(int e) {
         return posicionDao.getFechasOcupadas(e);
     }

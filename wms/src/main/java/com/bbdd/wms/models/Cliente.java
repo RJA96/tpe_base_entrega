@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -23,6 +24,7 @@ public class Cliente implements Serializable {
   private long cuitCuil;
   private String apellido;
   private String nombre;
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date fechaAlta;
 
   public void setAll(Cliente c) {

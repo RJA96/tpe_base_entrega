@@ -6,11 +6,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -27,7 +25,9 @@ public class Alquiler implements Serializable {
   @JoinColumn(table = "gr05_cliente", name = "id_cliente")
   private long idCliente;
 
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date fechaDesde;
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
   private Date fechaHasta;
   private double importeDia;
 
