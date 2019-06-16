@@ -1,11 +1,28 @@
-<article class="row">
-    <section class="col-12 mb-2">
+<article class="row justify-content-center">
+    <article class="row justify-content-center">
+        <div class="col-12">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>nombreEstanteria</th>
+                    <th>nroEstanteria</th>
+                </tr>
+            </thead>
+            <tbody class="tbodyestanteria">
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+    </article>
+  <section class="col-6 mb-2">
       <form>
         <section class="mt-2 form-group">
-          <input type="text" class="form-control nro_estanteria" placeholder="nro_estanteria"name="" value="">
-          <input type="text" class="form-control nro_fila" placeholder="nro_fila"name="" value="">
-          <input type="number" class="form-control nombre_fila" placeholder="nombre_fila"name="" value="">
-          <input type="text" class="form-control peso_max_kg" placeholder="peso_max_kg"name="" value="">
+          <input type="text" class="form-control nombreEstanteria" placeholder="nombreEstanteria"name="" value="">
+          <input type="text" class="form-control nroEstanteria" placeholder="nroEstanteria"name="" value="">
+
         </section>
         <section class="form-group mb-2">
           <button type="button" class="btn btn-dark create_fila" name="Create">Create</button>
@@ -17,12 +34,33 @@
 </article>
 
 
-<article class="row">
-    <section class="col-12 mb-2">
+<article class="row justify-content-center">
+    <article class="row justify-content-center">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Posicion Global</th>
+                    <th>Numero de Posicion</th>
+                    <th>Numero de Estanteria</th>
+                    <th>Numero de Fila</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody class="tbodypos">
+                <tr>
+                    <th scope="row"></th>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </article>
+    <section class="col-6 mb-2">
       <form>
         <section class="mt-2 form-group">
           <input type="text" class="form-control nro_estanteria" placeholder="nro_estanteria"name="" value="">
           <input type="text" class="form-control nombre_estanteria" placeholder="nombre_estanteria"name="" value="">
+          <input type="number" class="form-control nombre_fila" placeholder="nombre_fila"name="" value="">
+          <input type="text" class="form-control peso_max_kg" placeholder="peso_max_kg"name="" value="">
         </section>
         <section class="form-group mb-2">
           <button type="button" class="btn btn-dark create_estanteria" name="Create">Create</button>

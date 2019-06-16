@@ -33,6 +33,7 @@ function mostrarpag(url) {
               document.querySelector(".edit").addEventListener("click", edit);
             }
             if (url==="div/Filas-Estanterias.html"){
+                load('filas')
                 document.querySelector(".create_fila").addEventListener("click", create);
                 document.querySelector(".delete_fila").addEventListener("click", delate);
                 document.querySelector(".edit_fila").addEventListener("click", edit);
@@ -71,6 +72,13 @@ function mostrarpag(url) {
                 .then(r => r.json())
                 .then(json =>  mostrar(json,container,'posicion'))
                 .catch(error => container.innerHTML= "error");
+    }
+    if (pag=='filas') {
+      fetch('http://localhost:8080/api/v1/estanteria')
+      .then(r => r.json())
+      .then(json =>  console.log(json))
+      //.then(json =>  mostrar(json,container,'posicion'))
+      .catch(error => container.innerHTML= "error");
     }
     if (pag=='PosLibres_fecha') {
       let container = document.querySelector(".tbodypos-libres")
