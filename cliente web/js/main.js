@@ -4,6 +4,7 @@ document.querySelector('.Posiciones').addEventListener("click", function(){mostr
 document.querySelector('.Filas-Estanterias').addEventListener("click", function(){mostrarpag("div/Filas-Estanterias.html")});
 document.querySelector('.Pallets').addEventListener("click", function(){mostrarpag("div/Pallets.html")});
 document.querySelector('.Movimientos').addEventListener("click", function(){mostrarpag("div/Movimientos.html")});
+document.querySelector('.Home').addEventListener("click", function(){mostrarpag("div/home.html")});
 document.querySelector('.pos-libres').addEventListener("click",function(){load('PosLibres_fecha')})
 document.querySelector('.cliente-pos').addEventListener("click",function(){load('Pos_clientes')})
 
@@ -13,6 +14,10 @@ function mostrarpag(url) {
         .then(response => {
           response.text().then(t=> {
             container.innerHTML = t;
+            if (url =='div/home.html'){
+              document.querySelector('.pos-libres').addEventListener("click",function(){load('PosLibres_fecha')})
+              document.querySelector('.cliente-pos').addEventListener("click",function(){load('Pos_clientes')})
+            }
             if (url==="div/Clientes.html"){
               load('cliente');              
               document.querySelector(".create").addEventListener("click", create);
@@ -59,7 +64,7 @@ function mostrarpag(url) {
                 .then(json =>  mostrar(json, container,'alquiler'))
                 .catch(error => container.innerHTML= "error");
     }
-    if (pag=='cliente') {
+    if (pag=='cliente') {      
       let container = document.querySelector(".tbodycliente")
       fetch('http://localhost:8080/api/v1/cliente')
                 .then(r => r.json())
@@ -74,11 +79,19 @@ function mostrarpag(url) {
                 .catch(error => container.innerHTML= "error");
     }
     if (pag=='filas') {
+      let containerE = document.querySelector(".tbodyestanteria");
+      let containerF = document.querySelector(".tbodyfila");      
       fetch('http://localhost:8080/api/v1/estanteria')
       .then(r => r.json())
-      .then(json =>  console.log(json))
-      //.then(json =>  mostrar(json,container,'posicion'))
-      .catch(error => container.innerHTML= "error");
+      .then(json =>  mostrar(json,containerE,'estanteria'))
+      .then(function(){fetch('http://localhost:8080/api/v1/fila')
+      .then(r => r.json())
+      .then(json =>  mostrar(json,containerF,'fila'))
+      .catch(error => containerF.innerHTML= "error");
+      })
+      .catch(error => containerE.innerHTML= "error");
+      
+      
     }
     if (pag=='PosLibres_fecha') {
       let container = document.querySelector(".tbodypos-libres")
@@ -149,7 +162,6 @@ function mostrarpag(url) {
         node.appendChild(td_fechaAlta);
         td_fechaAlta.appendChild(fechaAlta);
         div.appendChild(node);
-        
       }
     }
     if (pag=='posicion'){
@@ -177,6 +189,46 @@ function mostrarpag(url) {
         td_nroFila.appendChild(nroFila);
         node.appendChild(td_tipo);
         td_tipo.appendChild(tipo);
+        div.appendChild(node);
+      }
+    }
+    if (pag=='estanteria') {
+      let div = container;
+      div.innerHTML = '';
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_nombreEstanteria = document.createElement("td");
+        let td_nroEstanteria = document.createElement("td");
+        let nombreEstanteria = document.createTextNode(json[i].nombreEstanteria);
+        let nroEstanteria = document.createTextNode(json[i].nroEstanteria);
+        node.appendChild(td_nombreEstanteria);
+        td_nombreEstanteria.appendChild(nombreEstanteria);
+        node.appendChild(td_nroEstanteria);
+        td_nroEstanteria.appendChild(nroEstanteria);
+        div.appendChild(node);
+      }
+    }
+    if (pag=='fila'){
+      let div = container;
+      div.innerHTML = '';      
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_nroEstanteria = document.createElement("td");
+        let td_nroFila = document.createElement("td");
+        let td_nombreFila = document.createElement("td");
+        let td_pesoMaxKg = document.createElement("td");
+        let nroEstanteria = document.createTextNode(json[i].nroEstanteria);
+        let nroFila = document.createTextNode(json[i].nroFila);
+        let nombreFila = document.createTextNode(json[i].nombreFila);
+        let pesoMaxKg = document.createTextNode(json[i].pesoMaxKg);
+        node.appendChild(td_nroEstanteria);
+        td_nroEstanteria.appendChild(nroEstanteria);
+        node.appendChild(td_nroFila);
+        td_nroFila.appendChild(nroFila);
+        node.appendChild(td_nombreFila);
+        td_nombreFila.appendChild(nombreFila);
+        node.appendChild(td_pesoMaxKg);
+        td_pesoMaxKg.appendChild(pesoMaxKg);
         div.appendChild(node);
       }
     }
