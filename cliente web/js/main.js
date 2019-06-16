@@ -47,6 +47,7 @@ function mostrarpag(url) {
                 document.querySelector(".edit_estanteria").addEventListener("click", edit);
             }
             if (url==="div/Pallets.html"){
+              load('pallet');
             }
             if (url==="div/Movimientos.html"){
             }
@@ -90,8 +91,13 @@ function mostrarpag(url) {
       .catch(error => containerF.innerHTML= "error");
       })
       .catch(error => containerE.innerHTML= "error");
-      
-      
+    }
+    if (pag=='pallet') {
+      let container = document.querySelector(".tbodypallet")
+      fetch('http://localhost:8080/api/v1/pallet')
+                .then(r => r.json())
+                .then(json => mostrar(json,container,'pallet'))
+                .catch(error => container.innerHTML= "error");
     }
     if (pag=='PosLibres_fecha') {
       let container = document.querySelector(".tbodypos-libres")
@@ -229,6 +235,26 @@ function mostrarpag(url) {
         td_nombreFila.appendChild(nombreFila);
         node.appendChild(td_pesoMaxKg);
         td_pesoMaxKg.appendChild(pesoMaxKg);
+        div.appendChild(node);
+      }
+    }
+    if (pag=='pallet') {
+      let div = container;
+      div.innerHTML = '';      
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_codPallet = document.createElement("td");
+        let td_descripcion = document.createElement("td");
+        let td_peso = document.createElement("td");
+        let codPallet = document.createTextNode(json[i].codPallet);
+        let descripcion = document.createTextNode(json[i].descripcion);
+        let peso = document.createTextNode(json[i].peso);
+        node.appendChild(td_codPallet);
+        td_codPallet.appendChild(codPallet);
+        node.appendChild(td_descripcion);
+        td_descripcion.appendChild(descripcion);
+        node.appendChild(td_peso);
+        td_peso.appendChild(peso);
         div.appendChild(node);
       }
     }
