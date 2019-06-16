@@ -4,6 +4,7 @@ document.querySelector('.Posiciones').addEventListener("click", function(){mostr
 document.querySelector('.Filas-Estanterias').addEventListener("click", function(){mostrarpag("div/Filas-Estanterias.html")});
 document.querySelector('.Pallets').addEventListener("click", function(){mostrarpag("div/Pallets.html")});
 document.querySelector('.Movimientos').addEventListener("click", function(){mostrarpag("div/Movimientos.html")});
+document.querySelector('.Movinternos').addEventListener("click", function(){mostrarpag("div/Mov_interno.html")});
 document.querySelector('.Home').addEventListener("click", function(){mostrarpag("div/home.html")});
 document.querySelector('.pos-libres').addEventListener("click",function(){load('PosLibres_fecha')})
 document.querySelector('.cliente-pos').addEventListener("click",function(){load('Pos_clientes')})
@@ -49,7 +50,10 @@ function mostrarpag(url) {
             if (url==="div/Pallets.html"){
               load('pallet');
             }
-            if (url==="div/Movimientos.html"){
+            if (url=="div/Movimientos.html") {
+              load('movimientos')
+            }
+            if (url==="div/Mov_internos.html"){
             }
           })
   
@@ -98,6 +102,14 @@ function mostrarpag(url) {
                 .then(r => r.json())
                 .then(json => mostrar(json,container,'pallet'))
                 .catch(error => container.innerHTML= "error");
+    }
+    if (pag=='movimientos'){
+      let container = document.querySelector(".tbodymovimiento")
+      fetch('http://localhost:8080/api/v1/movimiento')
+      .then(r => r.json())
+      //.then(json => console.log(json))
+      .then(json => mostrar(json,container,'movimientos'))
+      .catch(error => container.innerHTML= "error");
     }
     if (pag=='PosLibres_fecha') {
       let container = document.querySelector(".tbodypos-libres")
@@ -255,6 +267,30 @@ function mostrarpag(url) {
         td_descripcion.appendChild(descripcion);
         node.appendChild(td_peso);
         td_peso.appendChild(peso);
+        div.appendChild(node);
+      }
+    }
+    if (pag=='movimientos'){
+      let div = container;
+      div.innerHTML = '';      
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_idMovimiento = document.createElement("td");
+        let td_fecha = document.createElement("td");
+        let td_responsable = document.createElement("td");
+        let td_tipo = document.createElement("td");
+        let idMovimiento = document.createTextNode(json[i].idMovimiento);
+        let fecha = document.createTextNode(json[i].fecha);
+        let responsable = document.createTextNode(json[i].responsable);
+        let tipo = document.createTextNode(json[i].tipo);
+        node.appendChild(td_idMovimiento);
+        td_idMovimiento.appendChild(idMovimiento);
+        node.appendChild(td_fecha);
+        td_fecha.appendChild(fecha);
+        node.appendChild(td_responsable);
+        td_responsable.appendChild(responsable);
+        node.appendChild(td_tipo);
+        td_tipo.appendChild(tipo);
         div.appendChild(node);
       }
     }
