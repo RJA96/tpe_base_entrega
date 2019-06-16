@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>TP base</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
+
 <body>
     <nav class="navbar navbar-toggleable-md navbar-dark bg-primary">
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+            aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
@@ -43,7 +48,7 @@
         </div>
     </nav>
     <Div class="container use-ajax">
-        <div class="row justify-content-center"> 
+        <div class="row justify-content-center">
             <h3>Posiciones libres por fecha</h3>
             <div class="col-md-12 ">
                 <div class="">
@@ -63,47 +68,60 @@
                         </tbody>
                     </table>
                     <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <input type="date" class="form-control date dia"  value="">
-                        <div> <p></p></div>
-                        <button type="button" class="btn btn btn-dark pos-libres">Send</button>
+                        <div class="col-md-6">
+                            <input type="date" class="form-control date dia" value="">
+                            <div>
+                                <p></p>
+                            </div>
+                            <button type="button" class="btn btn btn-dark pos-libres">Send</button>
+                        </div>
                     </div>
                 </div>
-                </div>
-                
+
             </div>
         </Div>
-        <div class="row justify-content-center"> 
-                <h3>Posiciones por cliente</h3>
-                <div class="col-md-12">
-                    <div class="">
-                             <table hidden="hidden" class="table table-posicionesporcliente">
-                                <thead class="thead-dark">
-                                    <tr>
-                                        <th>Numero Estanteria</th>
-                                        <th>Numero Fila</th>
-                                        <th>Numero Posicion</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="containercliente">
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        <div class="row justify-content-center">
-                            <div class="col-md-6">
-                                <input type="number" min="1" class="form-control id_cliente" value="1">
-                                <div> <p></p></div>
-                                <button type="button" class="btn btn btn-dark cliente-pos">Send</button>
+        <div class="row justify-content-center">
+            <h3>Posiciones por cliente</h3>
+            <div class="col-md-12">
+                <div class="">
+                    <table hidden="hidden" class="table table-posicionesporcliente">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Numero Estanteria</th>
+                                <th>Numero Fila</th>
+                                <th>Numero Posicion</th>
+                            </tr>
+                        </thead>
+                        <tbody class="containercliente">
+                            <tr>
+                                <th scope="row"></th>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <input type="number" min="1" class="form-control id_cliente" value="1">
+                            <div>
+                                <p></p>
                             </div>
-                        </Div>
-                    </div>
+                            <button type="button" class="btn btn btn-dark cliente-pos">Send</button>
+                        </div>
+                    </Div>
                 </div>
-            </Div>
+            </div>
+        </Div>
     </Div>
 </body>
 <script src='js/main.js'></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
+</script>
+
 </html>
