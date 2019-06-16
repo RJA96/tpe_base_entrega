@@ -4,8 +4,8 @@ document.querySelector('.Posiciones').addEventListener("click", function(){mostr
 document.querySelector('.Filas-Estanterias').addEventListener("click", function(){mostrarpag("div/Filas-Estanterias.html")});
 document.querySelector('.Pallets').addEventListener("click", function(){mostrarpag("div/Pallets.html")});
 document.querySelector('.Movimientos').addEventListener("click", function(){mostrarpag("div/Movimientos.html")});
-document.querySelector('.pos-libres').addEventListener("click",function(){loadPosLibres()})
-document.querySelector('.cliente-pos').addEventListener("click",function(){loadAlquileresClientes()})
+document.querySelector('.pos-libres').addEventListener("click",function(){load('PosLibres_fecha')})
+document.querySelector('.cliente-pos').addEventListener("click",function(){load('Pos_clientes')})
 
 function mostrarpag(url) {
     let container = document.querySelector(".use-ajax");
@@ -13,23 +13,24 @@ function mostrarpag(url) {
         .then(response => {
           response.text().then(t=> {
             container.innerHTML = t;
-  
-            if (url==="div/Cliente.html"){
+            if (url==="div/Clientes.html"){
+              load('cliente');              
               document.querySelector(".create").addEventListener("click", create);
               document.querySelector(".delete").addEventListener("click", delate);
               document.querySelector(".edit").addEventListener("click", edit);
             }
             if (url==="div/Alquileres.html"){
-              load();
+              load('alquiler');
               document.querySelector(".create").addEventListener("click", create);
               document.querySelector(".delete").addEventListener("click", delate);
               document.querySelector(".edit").addEventListener("click", edit);
               
             }
-            if (url==="div/Posiciones.html"){
-                document.querySelector(".create").addEventListener("click", create);
-                document.querySelector(".delete").addEventListener("click", delate);
-                document.querySelector(".edit").addEventListener("click", edit);
+            if (url==="div/Posiciones.html"){   
+              load('posicion');          
+              document.querySelector(".create").addEventListener("click", create);
+              document.querySelector(".delete").addEventListener("click", delate);
+              document.querySelector(".edit").addEventListener("click", edit);
             }
             if (url==="div/Filas-Estanterias.html"){
                 document.querySelector(".create_fila").addEventListener("click", create);
@@ -49,77 +50,168 @@ function mostrarpag(url) {
       });
   }
 
-  function load(){
-    let container = document.querySelector(".alquiler")
-    fetch('http://localhost:8080/api/v1/alquiler')
-              .then(r => r.json())
-              .then(json =>  mostraralquiler(json, container))
-              .catch(error => container.innerHTML= "error");
-  }
-
-  function loadAlquileresClientes(){
-    let container = document.querySelector(".containercliente");
-    let cliente = document.querySelector(".id_cliente").value
-    fetch('http://localhost:8080/api/v1/posicion/pos-ocupadas/'+cliente)
-              .then(r => r.json())
-              .then(json => mostrarPos_clientes(json,container))
-              .catch(error => container.innerHTML= "error");
-  }
-
-  function loadPosLibres(){
-    //let container = document.querySelector(".pos-libres")
-    let fecha = document.querySelector(".dia").value;
-    fetch('http://localhost:8080/api/v1/posicion/pos-libres/{date}?date='+fecha)
-              .then(r => r.json())
-              .then(json => console.log(json))
-              .catch(error => container.innerHTML= "error");
-  }
-  function mostrarPos_clientes(json,container){
-    let div = container;
-    div.innerHTML = '';
-    for (let i = 0; i < json.length; i++) {
-      let node = document.createElement("tr");
-      let td_estanteria = document.createElement("td");
-      let td_fila = document.createElement("td");
-      let td_posicion = document.createElement("td");
-      let estanteria = document.createTextNode(json[i].nro_estanteria);
-      let fila = document.createTextNode(json[i].nro_fila);
-      let posicion = document.createTextNode(json[i].nro_posicion);
-      node.appendChild(td_estanteria);
-      td_estanteria.appendChild(estanteria);
-      node.appendChild(td_fila);
-      td_fila.appendChild(fila);
-      node.appendChild(td_posicion);
-      td_posicion.appendChild(posicion);
-      div.appendChild(node)
+  function load(pag){
+    if (pag=='alquiler'){
+      let container = document.querySelector(".alquiler")
+      fetch('http://localhost:8080/api/v1/alquiler')
+                .then(r => r.json())
+                .then(json =>  mostrar(json, container,'alquiler'))
+                .catch(error => container.innerHTML= "error");
+    }
+    if (pag=='cliente') {
+      let container = document.querySelector(".tbodycliente")
+      fetch('http://localhost:8080/api/v1/cliente')
+                .then(r => r.json())
+                .then(json =>  mostrar(json,container,'cliente'))
+                .catch(error => container.innerHTML= "error");
+    }
+    if (pag=='posicion') {
+      let container = document.querySelector(".tbodypos")
+      fetch('http://localhost:8080/api/v1/posicion')
+                .then(r => r.json())
+                .then(json =>  mostrar(json,container,'posicion'))
+                .catch(error => container.innerHTML= "error");
+    }
+    if (pag=='PosLibres_fecha') {
+      let container = document.querySelector(".tbodypos-libres")
+      let fecha = document.querySelector(".dia").value;
+      fetch('http://localhost:8080/api/v1/posicion/pos-libres/{date}?date='+fecha)
+                .then(r => r.json())
+                .then(json => mostrar(json,container,'PosLibres_fecha'))
+                .catch(error => container.innerHTML= "error");
+    }
+    if (pag=='Pos_clientes') {
+      let container = document.querySelector(".containercliente");
+      let cliente = document.querySelector(".id_cliente").value
+      fetch('http://localhost:8080/api/v1/posicion/pos-ocupadas/'+cliente)
+                .then(r => r.json())
+                .then(json => mostrar(json,container,'Pos_clientes'))
+                .catch(error => container.innerHTML= "error");
     }
   }
-  function mostraralquiler(json, container){
-    let div = container;
-    div.innerHTML = '';
-    for (let i = 0; i < json.length; i++) {
-      let node = document.createElement("tr");
-      let td_alquiler = document.createElement("td");
-      let td_idCliente = document.createElement("td");
-      let td_fechaDesde = document.createElement("td");
-      let td_fechaHasta = document.createElement("td");
-      let td_importeDia = document.createElement("td");
-      let idAlquiler = document.createTextNode(json[i].idAlquiler);
-      let idCliente = document.createTextNode(json[i].idCliente);
-      let fechaDesde = document.createTextNode(json[i].fechaDesde);
-      let fechaHasta = document.createTextNode(json[i].fechaHasta);
-      let importeDia = document.createTextNode(json[i].importeDia);
-      node.appendChild(td_alquiler);
-      td_alquiler.appendChild(idAlquiler);
-      node.appendChild(td_idCliente);
-      td_idCliente.appendChild(idCliente);
-      node.appendChild(td_fechaDesde );
-      td_fechaDesde.appendChild(fechaDesde);
-      node.appendChild(td_fechaHasta);
-      td_fechaHasta.appendChild(fechaHasta);
-      node.appendChild(td_importeDia);
-      div.appendChild(node);
-      td_importeDia.appendChild(importeDia);
-      
+
+  function mostrar(json, container,pag){
+    if (pag=='alquiler') {
+      let div = container;
+      div.innerHTML = '';
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_alquiler = document.createElement("td");
+        let td_idCliente = document.createElement("td");
+        let td_fechaDesde = document.createElement("td");
+        let td_fechaHasta = document.createElement("td");
+        let td_importeDia = document.createElement("td");
+        let idAlquiler = document.createTextNode(json[i].idAlquiler);
+        let idCliente = document.createTextNode(json[i].idCliente);
+        let fechaDesde = document.createTextNode(json[i].fechaDesde);
+        let fechaHasta = document.createTextNode(json[i].fechaHasta);
+        let importeDia = document.createTextNode(json[i].importeDia);
+        node.appendChild(td_alquiler);
+        td_alquiler.appendChild(idAlquiler);
+        node.appendChild(td_idCliente);
+        td_idCliente.appendChild(idCliente);
+        node.appendChild(td_fechaDesde );
+        td_fechaDesde.appendChild(fechaDesde);
+        node.appendChild(td_fechaHasta);
+        td_fechaHasta.appendChild(fechaHasta);
+        node.appendChild(td_importeDia);
+        td_importeDia.appendChild(importeDia);
+        div.appendChild(node);
       }
+    }
+    if (pag=='cliente') {
+      let div = container;
+      div.innerHTML = '';
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_cuitCuil = document.createElement("td");
+        let td_apellido = document.createElement("td");
+        let td_nombre = document.createElement("td");
+        let td_fechaAlta = document.createElement("td");
+        let cuitCuil = document.createTextNode(json[i].cuitCuil);
+        let apellido = document.createTextNode(json[i].apellido);
+        let nombre = document.createTextNode(json[i].nombre);
+        let fechaAlta = document.createTextNode(json[i].fechaAlta);
+        node.appendChild(td_cuitCuil);
+        td_cuitCuil.appendChild(cuitCuil);
+        node.appendChild(td_apellido);
+        td_apellido.appendChild(apellido);
+        node.appendChild(td_nombre);
+        td_nombre.appendChild(nombre);
+        node.appendChild(td_fechaAlta);
+        td_fechaAlta.appendChild(fechaAlta);
+        div.appendChild(node);
+        
+      }
+    }
+    if (pag=='posicion'){
+      let div = container;
+      div.innerHTML = '';
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_posGlobal = document.createElement("td");
+        let td_nroPosicion = document.createElement("td");
+        let td_nroEstanteria = document.createElement("td");
+        let td_nroFila = document.createElement("td");
+        let td_tipo = document.createElement("td");
+        let posGlobal = document.createTextNode(json[i].posGlobal);
+        let nroPosicion = document.createTextNode(json[i].nroPosicion);
+        let nroEstanteria = document.createTextNode(json[i].nroEstanteria);
+        let nroFila = document.createTextNode(json[i].nroFila);
+        let tipo = document.createTextNode(json[i].tipo);
+        node.appendChild(td_posGlobal);
+        td_posGlobal.appendChild(posGlobal);
+        node.appendChild(td_nroPosicion);
+        td_nroPosicion.appendChild(nroPosicion);
+        node.appendChild(td_nroEstanteria);
+        td_nroEstanteria.appendChild(nroEstanteria);
+        node.appendChild(td_nroFila);
+        td_nroFila.appendChild(nroFila);
+        node.appendChild(td_tipo);
+        td_tipo.appendChild(tipo);
+        div.appendChild(node);
+      }
+    }
+    if (pag=='PosLibres_fecha') {
+      let div = container;
+      document.querySelector(".table-posicioneslibrefecha").hidden= false;
+      div.innerHTML = '';
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_estanteria = document.createElement("td");
+        let td_fila = document.createElement("td");
+        let td_posicion = document.createElement("td");
+        let fila = document.createTextNode(json[i].nro_fila);
+        let estanteria = document.createTextNode(json[i].nro_estanteria);
+        let posicion = document.createTextNode(json[i].nro_posicion);
+        node.appendChild(td_fila);
+        td_fila.appendChild(fila);
+        node.appendChild(td_estanteria);
+        td_estanteria.appendChild(estanteria);
+        node.appendChild(td_posicion);
+        td_posicion.appendChild(posicion);
+        div.appendChild(node)
+      }
+    }
+    if (pag=='Pos_clientes'){
+      let div = container;
+      document.querySelector(".table-posicionesporcliente").hidden= false;
+      div.innerHTML = '';
+      for (let i = 0; i < json.length; i++) {
+        let node = document.createElement("tr");
+        let td_estanteria = document.createElement("td");
+        let td_fila = document.createElement("td");
+        let td_posicion = document.createElement("td");
+        let estanteria = document.createTextNode(json[i].nro_estanteria);
+        let fila = document.createTextNode(json[i].nro_fila);
+        let posicion = document.createTextNode(json[i].nro_posicion);
+        node.appendChild(td_estanteria);
+        td_estanteria.appendChild(estanteria);
+        node.appendChild(td_fila);
+        td_fila.appendChild(fila);
+        node.appendChild(td_posicion);
+        td_posicion.appendChild(posicion);
+        div.appendChild(node)
+      }
+    }
   }
